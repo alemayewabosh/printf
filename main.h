@@ -10,4 +10,5 @@ void v_printf(const char *format, va_list args);
 void switchFunction(const char *format, va_list args);
 void printBuffer(int base, va_list args);
 int _printf(const char *format, ...);
+
 #endif /*#ifndef MAIN_H*/
