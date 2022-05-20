@@ -101,6 +101,7 @@ void switchFunction(const char *format, va_list args)
 	break;
 	}
 }
+
 /**
  * v_printf - checks if a percentage specifier is
  *            there and prints
