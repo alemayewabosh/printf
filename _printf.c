@@ -65,11 +65,38 @@ void v_printf(const char *format, va_list args){
  */
 
 int _printf(const char *format, ...){
-    va_list args;
-    va_start(args, format);
+int noSpecifier = 1, length = 0, isPercentage = 0;
+	const char *s = format, *s1 = format;
+	va_list args;
 
-    v_printf(format, args);
-
-    va_end(args);
-    return (0);
+	while (*s1)
+	{
+		if (*s1 == '%')
+		{
+			noSpecifier = 0;
+			break;
+		}
+		s1++;
+	}
+	while (*s1)
+	{
+		if (*s1 == '%' && *(s1 + 1) == '%')
+			isPercentage = 1;
+		s1++;
+	}
+	va_start(args, format);
+	if (!noSpecifier)
+		v_printf(format, args);
+	else
+	{
+		while (*s)
+			putchar(*s++);
+	}
+	va_end(args);
+	for (length = 0; *format != '\0'; format++)
+		length++;
+	if (isPercentage)
+		return (length - 1);
+	else
+		return (length);
 }
